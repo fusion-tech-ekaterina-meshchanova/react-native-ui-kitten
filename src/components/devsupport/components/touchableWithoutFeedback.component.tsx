@@ -8,10 +8,14 @@ import React from 'react';
 import {
   Insets,
   StyleSheet,
-  TouchableOpacity,
+  TouchableOpacity as TouchableOpacityRN,
   TouchableOpacityProps,
   ViewStyle,
+  Platform,
 } from 'react-native';
+import {
+  TouchableOpacity as TouchableOpacityGH,
+} from 'react-native-gesture-handler';
 
 export interface TouchableWithoutFeedbackProps extends TouchableOpacityProps {
   useDefaultHitSlop?: boolean;
@@ -20,6 +24,8 @@ export interface TouchableWithoutFeedbackProps extends TouchableOpacityProps {
 }
 
 export type TouchableWithoutFeedbackElement = React.ReactElement<TouchableWithoutFeedbackProps>;
+
+const TouchableOpacity = Platform.OS === 'android' ? TouchableOpacityGH : TouchableOpacityRN;
 
 /**
  * Helper component for the Touchable component with no opacity feedback.
